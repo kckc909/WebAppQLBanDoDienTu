@@ -1,0 +1,324 @@
+{
+    "products": [
+        {
+            "product_id": 1,
+            "category_id": 101,
+            "name": "Samsung Galaxy M55 12GB 256GB",
+            "slug": "samsung-galaxy-m55-12gb-256gb",
+            "short_description": "Trải nghiệm hình ảnh sống động với màn hình AMOLED 6.7\", camera chính 50MP, RAM 12GB, pin 5000mAh.",
+            "description": "Samsung Galaxy M55 12GB 256GB trang bị màn hình Super AMOLED+ 6.7 inch, độ phân giải FullHD+, tần số quét 120Hz. Camera sau gồm chính 50MP (f/1.8, OIS), góc siêu rộng 8MP, macro 2MP. Camera trước 50MP. Chip Snapdragon 7 Gen 1 (4 nm). RAM 12GB, bộ nhớ trong 256GB. Pin dung lượng 5000mAh. Hỗ trợ 2 SIM. Hệ điều hành Android 14. NFC có. Màn hình độ sáng cao ~1000 nits.",
+            "brand": "Samsung",
+            "price": 7690000.00,
+            "list_price": 10990000.00,
+            "stock": 100,
+            "attributes": {
+                "ram": "12GB",
+                "storage": "256GB",
+                "screen_size": "6.7 inches",
+                "screen_type": "Super AMOLED+",
+                "screen_resolution": "1080 x 2400 pixels",
+                "refresh_rate": "120Hz",
+                "camera_rear_main": "50MP f/1.8 OIS",
+                "camera_rear_ultrawide": "8MP",
+                "camera_rear_macro": "2MP",
+                "camera_front": "50MP",
+                "chipset": "Snapdragon 7 Gen 1 (4 nm)",
+                "battery": "5000mAh",
+                "nfc": true,
+                "sim": "Dual Nano-SIM",
+                "os": "Android 14"
+            },
+            "sku": "SAM-M55-12-256",
+            "is_active": 1,
+            "created_at": "2025-09-16 00:00:00",
+            "updated_at": "2025-09-16 00:00:00"
+        },
+        {
+            "product_id": 2,
+            "category_id": 101,
+            "name": "Samsung Galaxy Z Flip4 256GB",
+            "slug": "samsung-galaxy-z-flip4-256gb",
+            "short_description": "Smartphone màn hình gập Z Flip4, chip Snapdragon 8+ Gen1, RAM 8GB, bộ nhớ 256GB, pin khoảng 3700mAh.",
+            "description": "Samsung Galaxy Z Flip4 256GB phiên bản chính hãng có màn hình chính Dynamic AMOLED 2X 6.7 inch, màn hình phụ ~1.9 inch. Camera sau kép: 12MP chính có OIS, khẩu độ f/1.8 + 12MP góc siêu rộng. Camera trước 10MP. Chip Snapdragon 8+ Gen1. RAM 8GB, bộ nhớ trong 256GB. Pin dung lượng ~3700mAh. Hỗ trợ 2 SIM (1 Nano + eSIM), NFC, hệ điều hành Android 12.",
+            "brand": "Samsung",
+            "price": 0.00,
+            "list_price": 0.00,
+            "stock": 50,
+            "attributes": {
+                "ram": "8GB",
+                "storage": "256GB",
+                "screen_size_primary": "6.7 inches",
+                "screen_type_primary": "Dynamic AMOLED 2X",
+                "screen_size_secondary": "1.9 inches",
+                "camera_rear_main": "12MP f/1.8 OIS",
+                "camera_rear_ultrawide": "12MP",
+                "camera_front": "10MP",
+                "chipset": "Snapdragon 8+ Gen1",
+                "battery": "3700mAh",
+                "nfc": true,
+                "sim": "Nano + eSIM",
+                "os": "Android 12"
+            },
+            "sku": "SAM-ZFLIP4-256",
+            "is_active": 1,
+            "created_at": "2025-09-16 00:00:00",
+            "updated_at": "2025-09-16 00:00:00"
+        },
+        {
+            "product_id": 3,
+            "category_id": 202,
+            "name": "MacBook Pro 2024 16-inch Apple M4 Pro 14CPU 20GPU 24GB RAM 512GB SSD",
+            "slug": "macbook-pro-2024-16-inch-m4-pro-24gb-512gb",
+            "short_description": "MacBook Pro 16.2″ M4 Pro, 24GB RAM, 512GB SSD, chip 14 CPU / 20 GPU, màn hình Liquid Retina XDR, ProMotion.",
+            "description": "MacBook Pro phiên bản 2024 với chip Apple M4 Pro 14 nhân CPU và 20 nhân GPU. RAM 24GB, dung lượng lưu trữ SSD 512GB. Màn hình Liquid Retina XDR kích thước ~16.2 inch, độ phân giải cao, hỗ trợ ProMotion 120Hz, True Tone, Nano-texture. Có cổng Thunderbolt 5 / USB-C, HDMI, MagSafe 3, jack 3.5mm, khe SDXC. Camera FaceTime HD 12MP, trọng lượng khoảng 2.14kg. Sản phẩm mới 100%, chính hãng, bảo hành 12 tháng. :contentReference[oaicite:0]{index=0}",
+            "brand": "Apple",
+            "price": 61690000.00,
+            "list_price": 61690000.00,
+            "stock": 20,
+            "attributes": {
+                "chipset": "Apple M4 Pro",
+                "cpu": "14 cores",
+                "gpu": "20 cores",
+                "ram": "24GB",
+                "storage": "512GB SSD",
+                "screen_size": "16.2 inches",
+                "screen_type": "Liquid Retina XDR",
+                "resolution": "3456×2234",
+                "refresh_rate": "120Hz",
+                "true_tone": true,
+                "nano_texture": true,
+                "ports": [
+                    "Thunderbolt 5 (USB-C)",
+                    "HDMI",
+                    "MagSafe 3",
+                    "3.5mm audio jack",
+                    "SDXC slot"
+                ],
+                "camera": "12MP FaceTime HD",
+                "weight": "2.14 kg",
+                "os": "macOS"
+            },
+            "sku": "APPLE-MBP-M4P-16-24-512",
+            "is_active": 1,
+            "created_at": "2025-09-16 00:00:00",
+            "updated_at": "2025-09-16 00:00:00"
+        },
+        {
+            "product_id": 4,
+            "category_id": 202,
+            "name": "MacBook Air 2025 13-inch Apple M4 16GB RAM 256GB SSD",
+            "slug": "macbook-air-2025-13-inch-m4-16gb-256gb",
+            "short_description": "MacBook Air 13″ 2025 mới, chip Apple M4, RAM 16GB, SSD 256GB.",
+            "description": "MacBook Air phiên bản 2025 với chip Apple M4, RAM 16GB, SSD 256GB. Màn hình 13-inch, thiết kế mỏng nhẹ, làm việc văn phòng, di chuyển dễ dàng. Tình trạng mới 100%. Bạn cần kiểm tra màu sắc & bảo hành chi tiết tại cửa hàng. (Thông số đầy đủ & ảnh cần cập nhật khi có sẵn).",
+            "brand": "Apple",
+            "price": 0.00,
+            "list_price": 0.00,
+            "stock": 10,
+            "attributes": {
+                "chipset": "Apple M4",
+                "ram": "16GB",
+                "storage": "256GB SSD",
+                "screen_size": "13 inches",
+                "screen_type": "Liquid Retina (ước tính)",
+                "os": "macOS",
+                "weight": "≈1.2-1.4 kg"
+            },
+            "sku": "APPLE-MBA-M4-13-16-256",
+            "is_active": 1,
+            "created_at": "2025-09-16 00:00:00",
+            "updated_at": "2025-09-16 00:00:00"
+        },
+        {
+            "product_id": 5,
+            "category_id": 203,
+            "name": "Asus Vivobook 16X K3605VC-RP521W Intel Core i5-13420H / RTX 3050 512GB",
+            "slug": "asus-vivobook-16x-k3605vc-i5-13420h-rtx3050-512",
+            "short_description": "Vivobook 16X mỏng nhẹ, chip i5-13420H + RTX 3050, RAM 8-16GB, SSD 512GB, màn hình 16″ FHD+ 144Hz.",
+            "description": "Asus Vivobook 16X K3605VC-RP521W trang bị CPU Intel Core i5-13420H, kết hợp card đồ họa rời NVIDIA GeForce RTX 3050, SSD NVMe 512GB, RAM 8GB (có cấu hình nâng cấp lên 16GB). Màn hình 16 inch FHD+ (1920×1200), tần số quét 144Hz, panel IPS, độ sáng khoảng 300 nits. Các cổng: Type-C USB3.2 Gen1 (có hỗ trợ Power Delivery), 2 × USB Type-A, HDMI 2.1, jack tai nghe 3.5mm. WiFi 6E, Bluetooth 5.3. Pin 3 cell ~50Wh. Phù hợp gaming nhẹ & làm việc đồ họa. :contentReference[oaicite:1]{index=1}",
+            "brand": "Asus",
+            "price": 16990000.00,
+            "list_price": 16990000.00,
+            "stock": 30,
+            "attributes": {
+                "cpu": "Intel Core i5-13420H",
+                "gpu": "NVIDIA GeForce RTX 3050",
+                "ram": "8GB",
+                "storage": "512GB SSD",
+                "screen_size": "16.0 inches",
+                "screen_type": "IPS",
+                "resolution": "1920×1200",
+                "refresh_rate": "144Hz",
+                "ports": [
+                    "USB-C 3.2 Gen1 (PD)",
+                    "USB-A ×2",
+                    "HDMI 2.1",
+                    "3.5mm audio jack"
+                ],
+                "wifi": "WiFi 6E",
+                "bluetooth": "5.3",
+                "battery": "≈50Wh",
+                "os": "Windows 11 (tiếng Việt)",
+                "weight": "≈1.8 kg"
+            },
+            "sku": "ASUS-VB16X-K3605VC-I5-3050-512",
+            "is_active": 1,
+            "created_at": "2025-09-16 00:00:00",
+            "updated_at": "2025-09-16 00:00:00"
+        },
+        {
+            "product_id": 5,
+            "category_id": 202,
+            "name": "MacBook Air 2025 13-inch Apple M4 16GB RAM 256GB SSD",
+            "slug": "macbook-air-2025-13-inch-m4-16gb-256gb",
+            "short_description": "MacBook Air 13″ 2025 mới, chip Apple M4, RAM 16GB, SSD 256GB.",
+            "description": "MacBook Air 2025 với chip Apple M4, RAM 16GB, SSD 256GB. Màn hình 13-inch Liquid Retina, thiết kế mỏng nhẹ. Trọng lượng khoảng 1.24kg, thời lượng pin lên tới 18 giờ. Hệ điều hành macOS.",
+            "brand": "Apple",
+            "price": 0.00,
+            "list_price": 0.00,
+            "stock": 10,
+            "attributes": {
+                "chipset": "Apple M4",
+                "ram": "16GB",
+                "storage": "256GB SSD",
+                "screen_size": "13 inches",
+                "screen_type": "Liquid Retina",
+                "os": "macOS",
+                "weight": "≈1.24 kg"
+            },
+            "sku": "APPLE-MBA-M4-13-16-256",
+            "is_active": 1,
+            "created_at": "2025-09-16 00:00:00",
+            "updated_at": "2025-09-16 00:00:00"
+        },
+        {
+            "product_id": 6,
+            "category_id": 203,
+            "name": "Asus Vivobook 16X K3605VC-RP521W Intel Core i5-13420H / RTX 3050 512GB",
+            "slug": "asus-vivobook-16x-k3605vc-i5-13420h-rtx3050-512",
+            "short_description": "Vivobook 16X, chip i5-13420H + RTX 3050, RAM 8GB, SSD 512GB, màn hình 16″ FHD+ 144Hz.",
+            "description": "Asus Vivobook 16X K3605VC-RP521W trang bị CPU Intel Core i5-13420H, card đồ họa rời NVIDIA GeForce RTX 3050, SSD 512GB, RAM 8GB. Màn hình 16 inch FHD+ (1920×1200), tần số quét 144Hz, IPS. Cổng kết nối: USB-C, USB-A, HDMI 2.1, jack tai nghe. WiFi 6E, Bluetooth 5.3. Pin 50Wh. Hệ điều hành Windows 11.",
+            "brand": "Asus",
+            "price": 16990000.00,
+            "list_price": 16990000.00,
+            "stock": 30,
+            "attributes": {
+                "cpu": "Intel Core i5-13420H",
+                "gpu": "NVIDIA GeForce RTX 3050",
+                "ram": "8GB",
+                "storage": "512GB SSD",
+                "screen_size": "16.0 inches",
+                "screen_type": "IPS",
+                "resolution": "1920×1200",
+                "refresh_rate": "144Hz",
+                "ports": [
+                    "USB-C 3.2 Gen1 (PD)",
+                    "USB-A ×2",
+                    "HDMI 2.1",
+                    "3.5mm audio jack"
+                ],
+                "wifi": "WiFi 6E",
+                "bluetooth": "5.3",
+                "battery": "50Wh",
+                "os": "Windows 11",
+                "weight": "≈1.8 kg"
+            },
+            "sku": "ASUS-VB16X-K3605VC-I5-3050-512",
+            "is_active": 1,
+            "created_at": "2025-09-16 00:00:00",
+            "updated_at": "2025-09-16 00:00:00"
+        }
+    ],
+    "product_images": [
+        {
+            "image_id": 1,
+            "product_id": 1,
+            "image_url": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/5/m55-xanh-la.jpg",
+            "alt_text": "Samsung Galaxy M55 front view",
+            "sort_order": 1
+        },
+        {
+            "image_id": 2,
+            "product_id": 1,
+            "image_url": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/d/i/dien-thoai-samsung-galaxy-m55_1_.png",
+            "alt_text": "Samsung Galaxy M55 back view",
+            "sort_order": 2
+        },
+        {
+            "image_id": 3,
+            "product_id": 1,
+            "image_url": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/s/a/samsung_galaxy_m55_12gb_256gb_-_5.png",
+            "alt_text": "Samsung Galaxy M55 side view",
+            "sort_order": 3
+        },
+        {
+            "image_id": 4,
+            "product_id": 2,
+            "image_url": "https://cdn.viettablet.com/images/detailed/59/z-flip4-cu-3.jpg",
+            "alt_text": "Samsung Galaxy Z Flip4 front unfolded",
+            "sort_order": 1
+        },
+        {
+            "image_id": 5,
+            "product_id": 2,
+            "image_url": "https://cdn.viettablet.com/images/thumbnails/480/516/detailed/59/samsung-galaxy-flip3-chinh-hang_7l3r-5f_lnwv-0n.png",
+            "alt_text": "Samsung Galaxy Z Flip4 folded",
+            "sort_order": 2
+        },
+        {
+            "image_id": 6,
+            "product_id": 3,
+            "image_url": "https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/42/336409/masstel-s9-gold-1-638821448992287205-750x500.jpg",
+            "alt_text": "MacBook Pro 2024 16-inch front view",
+            "sort_order": 1
+        },
+        {
+            "image_id": 7,
+            "product_id": 3,
+            "image_url": "https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/42/336409/masstel-s9-gold-2-638821449000576499-750x500.jpg",
+            "alt_text": "MacBook Pro 2024 16-inch side view",
+            "sort_order": 2
+        },
+        {
+            "image_id": 8,
+            "product_id": 4,
+            "image_url": "https://1pro.vn/wp-content/uploads/2024/12/macbook-pro-14-m4-600x600.jpeg",
+            "alt_text": "MacBook Air 2025 13-inch front view",
+            "sort_order": 1
+        },
+        {
+            "image_id": 9,
+            "product_id": 4,
+            "image_url": "https://1pro.vn/wp-content/uploads/2024/12/macbook-pro-14-m4-3-600x600.jpeg",
+            "alt_text": "MacBook Air 2025 13-inch front view",
+            "sort_order": 1
+        },
+        {
+            "image_id": 10,
+            "product_id": 5,
+            "image_url": "https://1pro.vn/wp-content/uploads/2025/03/mba13-m4-skyblue-gallery1-202503-600x461.jpeg",
+            "alt_text": "MacBook Air 2025 13 inch Apple",
+            "sort_order": 2
+        },
+        {
+            "image_id": 11,
+            "product_id": 5,
+            "image_url": "https://1pro.vn/wp-content/uploads/2025/03/mba13-m4-skyblue-gallery1-202503-600x461.jpeg",
+            "alt_text": "MacBook Air 2025 13-inch",
+            "sort_order": 1
+        },
+        {
+            "image_id": 12,
+            "product_id": 6,
+            "image_url": "https://laptop88.vn/media/product/10004_anb_asus_gaming_vivobook_16x.jpg",
+            "alt_text": " Asus Gaming Vivobook 16X K3605VC-RP521W front",
+            "sort_order": 1
+        },
+        {
+            "image_id": 13,
+            "product_id": 6,
+            "image_url": "https://laptop88.vn/media/product/10004_23145_52615_k3605vc_5___copy.jpg",
+            "alt_text": "Asus Vivobook 16X top view",
+            "sort_order": 1
+        }
+    ]
+}

@@ -1,0 +1,1 @@
+cài đặt thêm thư viện knex để truy vấn
