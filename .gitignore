@@ -1,0 +1,43 @@
+# -------------------
+# Android (React Native + Expo)
+# -------------------
+android/.expo/
+android/.vscode/
+android/*.iml
+android/node_modules/
+android/.expo-shared/
+android/*.log
+
+# -------------------
+# Web (Next.js)
+# -------------------
+web/node_modules/
+web/.next/
+web/out/
+web/.env.local
+web/.env.development
+web/.env.production
+web/.env.test
+web/.DS_Store
+web/.vscode/
+web/*.log
+
+# -------------------
+# API (Node.js)
+# -------------------
+api/node_modules/
+api/.env
+api/*.log
+
+# -------------------
+# OS & Editor
+# -------------------
+.DS_Store
+Thumbs.db
+.vscode/
+*.log
+
+# -------------------
+# Other
+# -------------------
+node.txt
