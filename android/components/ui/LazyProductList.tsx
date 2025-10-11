@@ -1,4 +1,4 @@
-import { api_getProducts } from "@/api/api_Products";
+import { api_get_product_list as api_get_product_list } from "@/api/api_Products";
 import React, { useState, useEffect } from "react";
 import { FlatList, ActivityIndicator, ViewStyle } from "react-native";
 import ProductCard from "./ProductCard";
@@ -26,7 +26,7 @@ const LazyProductList: React.FC<Props> = ({ onProductPress, contentContainerStyl
         if (loading || !hasMore) return;
         setLoading(true);
         try {
-            const mockData = await api_getProducts();
+            const mockData = await api_get_product_list();
 
             setProducts((prev) => [...prev, ...mockData]);
             if (page >= 10) setHasMore(false); // giả sử có 5 page

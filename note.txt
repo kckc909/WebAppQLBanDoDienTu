@@ -1,1 +1,11 @@
-cài đặt thêm thư viện knex để truy vấn
+
+Ý tưởng mở rộng : 
+bản thân app được chia làm 3 phần : App + 3 Web (1 web cho quản lý + 1 web cho bán hàng + 1 web cho khách hàng)
+
+chung : quản lý thông tin cá nhân
+
+với người mua : đánh giá sản phẩm, đánh giá người bán, nhắn tin với người bán, đặt ship, trả tiền theo nhiều phương thức, sử dụng gợi ý từ ai
+
+với người bán : quản lý sản phẩm, quảng cáo sản phẩm, live stream bán hàng, dịch vụ ship hàng, áp giảm giá
+
+với người quản lý : phát triển hệ thống, quản lý người dùng, quản lý sản phẩm (có được đăng bán hay không), quản lý các phiên live, quản lý xếp hạng    

@@ -13,12 +13,33 @@ export default function RootLayout() {
 	const colorScheme = useColorScheme();
 
 	return (
-		<ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme} >
-			<SafeAreaView className='flex-1'>
-				<Stack screenOptions={{ headerShown: false, animation: 'fade_from_bottom' }}>
-					<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-				</Stack>
-			</SafeAreaView>
+		<ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+			<Stack screenOptions={{
+				headerShown: true,
+				animation: 'fade_from_bottom'
+			}}>
+				<Stack.Screen
+					name="(tabs)"
+					options={{
+						headerShown: false
+					}} />
+				<Stack.Screen
+					name="auth"
+					options={{
+						headerShown: false
+					}} />
+				<Stack.Screen
+					name="product"
+					options={{
+						headerShown: false
+					}} />
+				<Stack.Screen
+					name="category"
+					options={{
+						headerShown: false
+					}} />
+
+			</Stack>
 		</ThemeProvider>
 	);
 }

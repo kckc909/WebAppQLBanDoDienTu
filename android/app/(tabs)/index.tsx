@@ -7,9 +7,10 @@ import ProductList from "@/components/ui/ProductList";
 import HorizontalSlider from "@/components/ui/HorizontalSlider";
 import Category from "@/components/ui/Category";
 import { api_getCategories } from "@/api/api_Categories";
-import { api_getProducts } from "@/api/api_Products";
+import { api_get_product_list } from "@/api/api_Products";
 import LazyProductList from "@/components/ui/LazyProductList";
-
+import { Searchbar } from "react-native-paper";
+import SearchBar from "../Search/SearchBar";
 export default function HomeScreen() {
 	const router = useRouter();
 
@@ -25,10 +26,12 @@ export default function HomeScreen() {
 	const [timeLeft, setTimeLeft] = useState(8000);
 	const [user, setUser] = useState<users | null>();
 	const [list_categoies, setCategories] = useState<categories[]>([]);
+	const [query, setQuery] = useState('');
+
 
 	// effects
 	useEffect(() => {
-		api_getProducts().then((data) => {
+		api_get_product_list().then((data) => {
 			if (data.length % 2 === 1) {
 				data.pop();
 			}
@@ -71,13 +74,13 @@ export default function HomeScreen() {
 							/>
 							<View className="ml-3">
 								<Text className="text-xs text-gray-300">Welcome back,</Text>
-								<Text className="font-semibold text-white">{user.fullname}</Text>
+								{/* <Text className="font-semibold text-white">{user.fullname}</Text> */}
 							</View>
 						</View>
 					) : (
 						<TouchableOpacity
 							className="flex flex-row items-center px-4 py-2 bg-white rounded-full"
-							onPress={() => router.push("/login")}
+							onPress={() => router.push("/auth/login")}
 						>
 							<MaterialIcons name="lock" size={20} color="gray" />
 							<Text className="font-semibold text-gray-800">Login</Text>
@@ -89,7 +92,7 @@ export default function HomeScreen() {
 				</View>
 
 				{/* Search bar */}
-				<View className="flex-row items-center px-3 py-2 bg-white rounded-full">
+				{/* <View className="flex-row items-center px-3 py-2 bg-white rounded-full">
 					<Ionicons name="search" size={18} color="gray" />
 					<TextInput
 						placeholder="Search"
@@ -99,7 +102,10 @@ export default function HomeScreen() {
 					<TouchableOpacity className="p-2 bg-gray-800 rounded-full">
 						<MaterialIcons name="tune" size={18} color="white" />
 					</TouchableOpacity>
-				</View>
+				</View> */}x
+			</View>
+			<View className="p-2">
+				<SearchBar />
 			</View>
 
 			{/* 🔹 Special Offer Slider */}
@@ -125,7 +131,9 @@ export default function HomeScreen() {
 								item.name.length > 10 ? item.name.slice(0, 10) + "..." : item.name
 							}
 							icon={item.icon as string}
-							onPress={() => { }}
+							onPress={() => { 
+								router.push('./app/category')
+							}}
 						/>
 					)}
 				/>
@@ -144,8 +152,10 @@ export default function HomeScreen() {
 						(tab, idx) => (
 							<TouchableOpacity
 								key={idx}
-								className={`px-4 py-1 rounded-full mr-2 ${idx === 1 ? "bg-black" : "bg-gray-200"
-									}`}
+								className={`px-4 py-1 rounded-full mr-2 ${idx === 1 ? "bg-black" : "bg-gray-200"}`}
+								onPress={() => { 
+								
+								}}
 							>
 								<Text
 									className={`${idx === 1 ? "text-white" : "text-gray-700"
@@ -178,10 +188,7 @@ export default function HomeScreen() {
 				ListHeaderComponent={listHeaderCom}
 				renderItem={() => null}
 				ListFooterComponent={
-					<LazyProductList onProductPress={(item) => router.push({
-						pathname: `/product_detail`,
-						params: { id: item.product_id.toString() }
-					})} />
+					<LazyProductList onProductPress={(item) => router.push(`/product/${item.product_id}`)} />
 				}
 				ListFooterComponentStyle={{ alignItems: "center" }}
 			/>

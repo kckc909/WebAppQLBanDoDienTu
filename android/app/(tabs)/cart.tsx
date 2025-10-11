@@ -119,13 +119,6 @@ export default function CartScreen() {
 
     return (
         <SafeAreaView className="flex-1 bg-gray-100">
-            {/* Header */}
-            <View className="flex-row items-center p-4 bg-white shadow">
-                <Ionicons name="arrow-back" size={24} onPress={() => {
-                    router.back();
-                }} />
-                <Text className="flex-1 text-lg font-bold text-center">Giỏ hàng</Text>
-            </View>
 
             {/* Danh sách sản phẩm */}
             <FlatList

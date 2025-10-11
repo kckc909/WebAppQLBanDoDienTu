@@ -30,10 +30,6 @@ const CategoriesScreen: React.FC = () => {
         <View className="flex-1 bg-gray-50">
             {/* Danh mục */}
             <View className="p-3 bg-white">
-                <Text className="mb-3 text-lg font-semibold">
-                    Danh mục
-                </Text>
-
                 <FlatList
                     data={visibleCategories}
                     keyExtractor={(item) => item.category_id.toString()}

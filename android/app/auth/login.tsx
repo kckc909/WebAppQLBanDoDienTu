@@ -97,7 +97,7 @@ export default function Login() {
                 Don’t have an account?{" "}
                 <Text
                     className="text-blue-500"
-                    onPress={() => router.push("/register")}
+                    onPress={() => router.push("/auth/register")}
                 >
                     Sign Up
                 </Text>

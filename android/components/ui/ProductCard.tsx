@@ -14,7 +14,7 @@ const ProductCard: React.FC<Props> = ({ product, onPress }) => {
             className="bg-white rounded-xl shadow-md overflow-hidden m-2 w-40 data-[pressed]:opacity-80"
         >
             <Image
-                source={{ uri: product.thumbnail_url || "https://towadenki.vn/wp-content/plugins/elementor/assets/images/placeholder.png" }}
+                source={{ uri: product.thumbnail_url ||"https://towadenki.vn/wp-content/plugins/elementor/assets/images/placeholder.png" }}
                 className="w-full h-32"
                 resizeMode="cover"
             />

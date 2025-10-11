@@ -74,7 +74,7 @@ export default function Register() {
                 Already have an account?{" "}
                 <Text
                     className="text-blue-500"
-                    onPress={() => router.push("/login")}
+                    onPress={() => router.push("/auth/login")}
                 >
                     Sign In
                 </Text>
