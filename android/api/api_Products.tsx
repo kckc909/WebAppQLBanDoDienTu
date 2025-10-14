@@ -43,7 +43,7 @@ export async function api_getProductDetail(id: string | number) {
     }
 }
 
-export async function api_product_search(keyword = "", limit = 10, offset = 0) {
+export async function api_product_search(keyword = "", filters = {}, limit = 10, offset = 0) {
     try {
         const params = new URLSearchParams({
             keyword,

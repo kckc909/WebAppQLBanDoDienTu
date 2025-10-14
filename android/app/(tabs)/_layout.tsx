@@ -53,7 +53,7 @@ export default function TabLayout() {
 			<Tabs.Screen
 				name="cart"
 				options={{
-					title: 'Cart',
+					title: 'Giỏ hàng',
 					tabBarIcon: ({ color, focused }) => (
 						<View
 							style={{

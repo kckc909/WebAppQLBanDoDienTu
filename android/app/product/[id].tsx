@@ -8,6 +8,7 @@ import ProductRating from "@/components/ui/ProductRating";
 import ImagesGallery from "@/components/ui/ImagesGallery";
 import { ATTRIBUTE_DISPLAY_NAMES } from "@/constants/AttriName";
 import ProductAttributes from "./ProductAtrributes";
+import ProductReviewSection from "./ProductReview";
 
 export default function ProductDetails() {
     const { id } = useLocalSearchParams<{ id: string }>();
@@ -116,23 +117,31 @@ export default function ProductDetails() {
                 {Object.keys(attributes).length > 0 && (
                     <ProductAttributes attributes={attributes} />
                 )}
+
+                {/* Thông tin khác */}
+                <View className="px-1 py-2 mt-2 bg-white rounded-2xl">
+                    {productData?.id ? <ProductReviewSection productId={productData?.id} /> : null}
+                </View>
+
             </ScrollView>
 
             {/* Thanh hành động */}
             <View className="flex-row items-center justify-between px-4 py-3 bg-white border-t">
-                <Text className="text-lg font-bold text-red-500">{currentVariant?.price.toLocaleString() || 0} VNĐ</Text>
+                {/* Thêm vào giỏ */}
+                <TouchableOpacity className="flex-row items-center px-6 py-3 bg-blue-500 rounded-full"
+                    onPress={() => {
+                        if (!productData) return;
+
+                        // Thêm sản phẩm vào giỏ hàng
+
+                    }}
+                >
+                    <Ionicons name="cart-outline" size={20} color="white" />
+                    <Text className="ml-2 font-semibold text-white">Thêm vào giỏ</Text>
+                </TouchableOpacity>
                 <View>
-                    <TouchableOpacity className="flex-row items-center px-6 py-3 bg-blue-500 rounded-full"
-                        onPress={() => {
-                            if (!productData) return;
-
-                            // Thêm sản phẩm vào giỏ hàng
-
-                        }}
-                    >
-                        <Ionicons name="cart-outline" size={20} color="white" />
-                        <Text className="ml-2 font-semibold text-white">Thêm vào giỏ</Text>
-                    </TouchableOpacity>
+                    {/* Mua ngay */}
+                    <Text className="text-lg font-bold text-red-500">{currentVariant?.price.toLocaleString() || 0} VNĐ</Text>
                     <TouchableOpacity className="flex-row items-center px-6 py-3 mt-3 bg-red-500 rounded-full"
                         onPress={() => {
                             if (!productData) return;

@@ -90,20 +90,12 @@ export default function HomeScreen() {
 						<Ionicons name="notifications-outline" size={20} color="white" />
 					</TouchableOpacity>
 				</View>
-
-				{/* Search bar */}
-				{/* <View className="flex-row items-center px-3 py-2 bg-white rounded-full">
-					<Ionicons name="search" size={18} color="gray" />
-					<TextInput
-						placeholder="Search"
-						className="flex-1 ml-2 text-gray-700"
-						placeholderTextColor="gray"
-					/>
-					<TouchableOpacity className="p-2 bg-gray-800 rounded-full">
-						<MaterialIcons name="tune" size={18} color="white" />
-					</TouchableOpacity>
-				</View> */}x
 			</View>
+			<View className="p-2" ><Text onPress={
+				() => {
+					router.push('../Search')
+				}
+			}>adsnasjdnasd</Text></View>
 			<View className="p-2">
 				<SearchBar />
 			</View>
@@ -131,8 +123,8 @@ export default function HomeScreen() {
 								item.name.length > 10 ? item.name.slice(0, 10) + "..." : item.name
 							}
 							icon={item.icon as string}
-							onPress={() => { 
-								router.push('./app/category')
+							onPress={() => {
+								router.push('../category')
 							}}
 						/>
 					)}
@@ -153,8 +145,8 @@ export default function HomeScreen() {
 							<TouchableOpacity
 								key={idx}
 								className={`px-4 py-1 rounded-full mr-2 ${idx === 1 ? "bg-black" : "bg-gray-200"}`}
-								onPress={() => { 
-								
+								onPress={() => {
+
 								}}
 							>
 								<Text
@@ -171,7 +163,7 @@ export default function HomeScreen() {
 					products={list_Product}
 					horizontal={true}
 					numColumns={1}
-					onProductPress={(product) => console.log(product.thumbnail_url)}
+					onProductPress={(product) => router.push(`./product/${product.product_id}`)}
 				/>
 			</View>
 

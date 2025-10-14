@@ -3,6 +3,9 @@ const router = express.Router();
 const ctrl = require('../controllers/reviews.controllers');
 
 // GET /api/<table>
+
+
+
 router.get('/', ctrl.getAll);
 router.get('/:id', ctrl.getById);
 router.post('/', ctrl.create);

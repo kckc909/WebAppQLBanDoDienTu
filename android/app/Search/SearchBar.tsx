@@ -28,7 +28,7 @@ export default function SearchBar() {
     };
 
     // Debounce để tránh gọi API liên tục
-    const debouncedSearch = useCallback(debounce(fetchResults, 500), []);
+    const debouncedSearch = useCallback(debounce(fetchResults,250), []);
 
     // Mỗi khi query thay đổi → kích hoạt debounce
     useEffect(() => {
@@ -43,7 +43,7 @@ export default function SearchBar() {
                 value={query}
                 onChangeText={setQuery}
                 onSubmitEditing={() => {
-                    if (query.trim()) router.push(`./app/Search`);
+                    if (query.trim()) router.push(`../Search`);
                 }}
                 loading={loading}
                 style={{

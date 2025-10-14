@@ -145,3 +145,12 @@ export interface users {
     is_deleted: number;
 }
 
+// Custom type for ..
+export type CartItemType = {
+    id: number;
+    name: string;
+    image: string;
+    price: number;
+    quantity: number;
+    selected: boolean;
+};
