@@ -6,7 +6,7 @@ import { CartItemType } from "@/constants/custom.d";
 
 type Props = {
     data: CartItemType[];
-    onUpdateQuantity: (id: number, newQty: number) => void;
+    onUpdateQuantity: (product_id: number, variant_id: number, quantity: number) => void;
     onRemove: (id: number) => void;
     onCheckout: (selected: CartItemType[]) => void;
 };
@@ -27,7 +27,7 @@ const CartList: React.FC<Props> = ({
 
     const totalPrice = useMemo(() => {
         return data
-            .filter((item) => selectedIds.includes(item.id))
+            .filter((item) => selectedIds.includes(item.product_id))
             .reduce((sum, i) => sum + i.price * i.quantity, 0);
     }, [selectedIds, data]);
 
@@ -35,10 +35,10 @@ const CartList: React.FC<Props> = ({
         <View className="flex-1 bg-gray-50">
             <FlatList
                 data={data}
-                keyExtractor={(item) => item.id.toString()}
+                keyExtractor={(item) => item.product_id.toString()}
                 renderItem={({ item }) => (
                     <CartItem
-                        item={{ ...item, selected: selectedIds.includes(item.id) }}
+                        item={{ ...item, selected: selectedIds.includes(item.product_id) }}
                         onSelect={toggleSelect}
                         onUpdateQuantity={onUpdateQuantity}
                         onRemove={onRemove}
@@ -64,7 +64,7 @@ const CartList: React.FC<Props> = ({
                     mode="contained"
                     disabled={selectedIds.length === 0}
                     onPress={() =>
-                        onCheckout(data.filter((i) => selectedIds.includes(i.id)))
+                        onCheckout(data.filter((i) => selectedIds.includes(i.product_id)))
                     }
                 >
                     Thanh toán ({selectedIds.length})

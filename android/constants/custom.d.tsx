@@ -147,9 +147,10 @@ export interface users {
 
 // Custom type for ..
 export type CartItemType = {
-    id: number;
+    product_id: number;
+    variant_id: number;
     name: string;
-    image: string;
+    thumbnail_url: string;
     price: number;
     quantity: number;
     selected: boolean;

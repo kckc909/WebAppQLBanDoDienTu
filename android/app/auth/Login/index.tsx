@@ -2,8 +2,8 @@ import { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Pressable, Image } from "react-native";
 import { useRouter } from "expo-router";
 import SocialButton from "@/components/ui/SocialButton";
-import { IpAPI } from "@/constants/IpAPI";
 import { apiLogin } from "@/api/api_Login";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Login() {
 
@@ -14,7 +14,7 @@ export default function Login() {
 
     const handleLogin = async () => {
         if (email.trim() === "" || password.trim() === "") {
-            
+
             router.replace("/");
 
             return;
@@ -25,6 +25,7 @@ export default function Login() {
         if (response) {
             console.log("Login successful:", response);
             router.replace("/");
+            AsyncStorage.setItem("user", JSON.stringify(response));
         }
         else {
             console.log("Login failed");
@@ -97,7 +98,9 @@ export default function Login() {
                 Don’t have an account?{" "}
                 <Text
                     className="text-blue-500"
-                    onPress={() => router.push("/auth/register")}
+                    onPress={() => {
+                        router.push("../Register")
+                    }}
                 >
                     Sign Up
                 </Text>

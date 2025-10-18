@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import { useRouter } from "expo-router";
+import SocialButton from "@/components/ui/SocialButton";
 
 export default function Register() {
     const router = useRouter();
@@ -74,11 +75,17 @@ export default function Register() {
                 Already have an account?{" "}
                 <Text
                     className="text-blue-500"
-                    onPress={() => router.push("/auth/login")}
+                    onPress={() => router.push("../Login")}
                 >
                     Sign In
                 </Text>
             </Text>
+
+            <View className="flex-row justify-center mb-6 space-x-6">
+                <SocialButton provider="facebook" onPress={() => { }} />
+                <SocialButton provider="google" onPress={() => { }} />
+                <SocialButton provider="twitter" onPress={() => { }} />
+            </View>
         </View>
     );
 }

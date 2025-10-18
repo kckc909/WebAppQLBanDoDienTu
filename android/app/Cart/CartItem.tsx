@@ -4,11 +4,12 @@ import { Checkbox, IconButton, Dialog, Portal, Button } from "react-native-paper
 import { useNavigation } from "@react-navigation/native";
 import { router } from "expo-router";
 import { CartItemType } from "@/constants/custom.d";
+import { DEFAULT_PRODUCT_IMAGE } from "@/constants/default";
 
 type Props = {
     item: CartItemType;
     onSelect: (id: number) => void;
-    onUpdateQuantity: (id: number, newQty: number) => void;
+    onUpdateQuantity: (product_id: number, variant_id: number, quantity: number) => void;
     onRemove: (id: number) => void;
 };
 
@@ -18,19 +19,19 @@ const CartItem: React.FC<Props> = ({
     onUpdateQuantity,
     onRemove,
 }) => {
-    const navigation = useNavigation();
+
     const [showDialog, setShowDialog] = useState(false);
 
     const handleDecrease = () => {
         if (item.quantity <= 1) {
             setShowDialog(true);
         } else {
-            onUpdateQuantity(item.id, item.quantity - 1);
+            onUpdateQuantity(item.product_id, item.variant_id, item.quantity - 1);
         }
     };
 
     const handleIncrease = () => {
-        onUpdateQuantity(item.id, item.quantity + 1);
+        onUpdateQuantity(item.product_id, item.variant_id, item.quantity + 1);
     };
 
     return (
@@ -38,17 +39,17 @@ const CartItem: React.FC<Props> = ({
             {/* Checkbox chọn sản phẩm */}
             <Checkbox
                 status={item.selected ? "checked" : "unchecked"}
-                onPress={() => onSelect(item.id)}
+                onPress={() => onSelect(item.product_id)}
             />
 
             {/* Ảnh sản phẩm */}
             <TouchableOpacity
                 onPress={() =>
-                    router.push(`/product/${item.id}`)
+                    router.push(`/product/${item.product_id}`)
                 }
             >
                 <Image
-                    source={{ uri: item.image }}
+                    source={{ uri: item.thumbnail_url || DEFAULT_PRODUCT_IMAGE }}
                     className="w-16 h-16 mx-2 rounded-lg"
                 />
             </TouchableOpacity>
@@ -56,7 +57,7 @@ const CartItem: React.FC<Props> = ({
             {/* Thông tin sản phẩm */}
             <View className="flex-1">
                 <TouchableOpacity onPress={() => {
-                    router.push(`/product/${item.id}`)
+                    router.push(`/product/${item.product_id}`)
                 }}>
                     <Text className="text-base font-medium" numberOfLines={2}>
                         {item.name}
@@ -100,7 +101,7 @@ const CartItem: React.FC<Props> = ({
                         <Button onPress={() => setShowDialog(false)}>Hủy</Button>
                         <Button
                             onPress={() => {
-                                onRemove(item.id);
+                                onRemove(item.product_id);
                                 setShowDialog(false);
                             }}
                         >

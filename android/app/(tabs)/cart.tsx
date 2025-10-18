@@ -1,250 +1,90 @@
-import { View, Text, TextInput, TouchableOpacity, FlatList, Image } from "react-native";
-import { useState } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
-import CartItem from "../Cart/CartItem";
-import CartList from "../Cart/CartList";
 import { CartItemType } from "@/constants/custom.d";
-
-// export default function CartScreen() {
-//     const [cart, setCart] = useState([
-//         {
-//             "id": "1",
-//             "name": "Canon EOS RP Kit RF24",
-//             "price": 28390000,
-//             "currency": "VND",
-//             "shop": "kyma.vn", "qty": 2,
-//             "image_url": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcS3QYIksZaO_J1nsz8KYyOQ_L9hvrvbqfIMqp2pq3W0wZsTZF2Tglcld73snYFG8nDTl9KQ9QutWv-Z_U0tXS8F1kmI0YI55dvo-0kINwbisPMfUAtsLdsgJ-hBIaqZtRsE_8bFTQ&usqp=CAc"
-//         },
-//         {
-//             "id": "2",
-//             "name": "Surface Laptop 7 15",
-//             "price": 52990000,
-//             "currency": "VND",
-//             "shop": "Surfacecity.vn", "qty": 2,
-//             "image_url": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTx5AQ2cBXWqhP3kLfJsSQCrKkrDLreKjgWnYhhctE8Nv4uGj4LOMR_BuYM_ic5JqXToA8m9GiU435BWx03W9rjQttfMAvtMOA1gmIoEBR0PIHTsbmAftrlRI2egz769qxGSQt3AA&usqp=CAc"
-//         },
-//         {
-//             "id": '3',
-//             "name": "Macbook Air M2 13-inch",
-//             "price": 18490000,
-//             "currency": "VND",
-//             "shop": "uscom.com.vn", "qty": 2,
-//             "image_url": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSNSol_xXJ7DI8kbD0oi2NPqQGMtuCGo0sS8Q__jz_AD5cHRuW6JyiXwvQt8sljEVFwQMztHhwy3d37TMgUQlcvC_TmTUg6lfmyJWZV86Rq-N0Nvm5NQ2YbGMbhuK47nEfTdJ5evw&usqp=CAc"
-//         },
-//         {
-//             "id": '4',
-//             "name": "Canon EOS RP Kit RF24",
-//             "price": 28390000,
-//             "currency": "VND",
-//             "shop": "kyma.vn", "qty": 2,
-//             "image_url": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcS3QYIksZaO_J1nsz8KYyOQ_L9hvrvbqfIMqp2pq3W0wZsTZF2Tglcld73snYFG8nDTl9KQ9QutWv-Z_U0tXS8F1kmI0YI55dvo-0kINwbisPMfUAtsLdsgJ-hBIaqZtRsE_8bFTQ&usqp=CAc"
-//         },
-//         {
-//             "id": '5',
-//             "name": "Surface Laptop 7 15",
-//             "price": 52990000,
-//             "currency": "VND",
-//             "shop": "Surfacecity.vn", "qty": 2,
-//             "image_url": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTx5AQ2cBXWqhP3kLfJsSQCrKkrDLreKjgWnYhhctE8Nv4uGj4LOMR_BuYM_ic5JqXToA8m9GiU435BWx03W9rjQttfMAvtMOA1gmIoEBR0PIHTsbmAftrlRI2egz769qxGSQt3AA&usqp=CAc"
-//         },
-//         {
-//             "id": '6',
-//             "name": "Macbook Air M2 13-inch",
-//             "price": 18490000,
-//             "currency": "VND",
-//             "shop": "uscom.com.vn",
-//             "image_url": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSNSol_xXJ7DI8kbD0oi2NPqQGMtuCGo0sS8Q__jz_AD5cHRuW6JyiXwvQt8sljEVFwQMztHhwy3d37TMgUQlcvC_TmTUg6lfmyJWZV86Rq-N0Nvm5NQ2YbGMbhuK47nEfTdJ5evw&usqp=CAc",
-//             "qty": 2,
-//         },
-//     ]
-//     );
-
-//     const [promo, setPromo] = useState("");
-//     const deliveryFee = 25;
-//     const discount = 35;
-
-//     const updateQty = (id: string, delta: number) => {
-//         setCart((prev) =>
-//             prev.map((item) =>
-//                 item.id == id ? { ...item, qty: Math.max(1, item.qty + delta) } : item
-//             )
-//         );
-//     };
-
-//     const removeItem = (id: string) => {
-//         setCart((prev) => prev.filter((item) => item.id !== id));
-//     };
-
-//     const subTotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-//     const total = subTotal + deliveryFee - discount;
-
-//     const renderItem = ({ item }: any) => (
-//         <View className="flex-row items-center justify-between p-4 mb-2 bg-white shadow rounded-xl">
-//             {/* Hình sản phẩm (tạm placeholder) */}
-//             <Image
-//                 source={{ uri: item.image_url }}
-//                 className="w-16 h-16 rounded-md"
-//             />
-//             <View className="flex-1 ml-3">
-//                 <Text className="font-semibold">{item.name}</Text>
-//                 <Text className="text-sm text-gray-500">{item.category}</Text>
-//                 <Text className="mt-1 font-bold">${item.price.toFixed(2)}</Text>
-//             </View>
-
-//             {/* Nút tăng/giảm */}
-//             <View className="flex-row items-center">
-//                 <TouchableOpacity
-//                     className="items-center justify-center w-8 h-8 bg-gray-200 rounded-full"
-//                     onPress={() => updateQty(item.id, -1)}
-//                 >
-//                     <Text className="text-lg">-</Text>
-//                 </TouchableOpacity>
-//                 <Text className="mx-2">{item.qty}</Text>
-//                 <TouchableOpacity
-//                     className="items-center justify-center w-8 h-8 bg-gray-200 rounded-full"
-//                     onPress={() => updateQty(item.id, 1)}
-//                 >
-//                     <Text className="text-lg">+</Text>
-//                 </TouchableOpacity>
-//             </View>
-
-//             {/* Nút xóa */}
-//             <TouchableOpacity
-//                 className="ml-3"
-//                 onPress={() => removeItem(item.id)}
-//             >
-//                 <Text className="text-xl text-red-500">🗑</Text>
-//             </TouchableOpacity>
-//         </View>
-//     );
-
-//     return (
-//         <SafeAreaView className="flex-1 bg-gray-100">
-
-//             {/* Danh sách sản phẩm */}
-//             <FlatList
-//                 data={cart}
-//                 keyExtractor={(item) => item.id}
-//                 renderItem={renderItem}
-//                 contentContainerStyle={{ padding: 16, paddingBottom: 200 }}
-//             />
-
-//             {/* Panel dưới cùng */}
-//             <View className="absolute bottom-0 left-0 right-0 p-4 bg-white shadow-lg rounded-t-2xl">
-//                 {/* Promo Code */}
-//                 <View className="flex-row mb-3">
-//                     <TextInput
-//                         placeholder="Promo Code"
-//                         value={promo}
-//                         onChangeText={setPromo}
-//                         className="flex-1 px-3 py-2 border border-gray-300 rounded-l-full"
-//                     />
-//                     <TouchableOpacity className="items-center justify-center px-4 bg-gray-800 rounded-r-full">
-//                         <Text className="font-semibold text-white">Apply</Text>
-//                     </TouchableOpacity>
-//                 </View>
-
-//                 {/* Tổng tiền */}
-//                 <View className="mb-3 space-y-1">
-//                     <View className="flex-row justify-between">
-//                         <Text className="text-gray-500">Sub-Total</Text>
-//                         <Text>${subTotal.toFixed(2)}</Text>
-//                     </View>
-//                     <View className="flex-row justify-between">
-//                         <Text className="text-gray-500">Delivery Fee</Text>
-//                         <Text>${deliveryFee.toFixed(2)}</Text>
-//                     </View>
-//                     <View className="flex-row justify-between">
-//                         <Text className="text-gray-500">Discount</Text>
-//                         <Text className="text-red-500">-${discount.toFixed(2)}</Text>
-//                     </View>
-//                     <View className="flex-row justify-between pt-2 mt-2 border-t border-dashed">
-//                         <Text className="font-bold">Total Cost</Text>
-//                         <Text className="font-bold">${total.toFixed(2)}</Text>
-//                     </View>
-//                 </View>
-
-//                 {/* Nút Checkout */}
-//                 <TouchableOpacity className="items-center py-3 bg-black rounded-full">
-//                     <Text className="font-semibold text-white">Proceed to Checkout</Text>
-//                 </TouchableOpacity>
-//             </View>
-//         </SafeAreaView>
-//     );
-// }
+import { useFocusEffect, useRouter } from "expo-router";
+import { useEffect, useState } from "react";
+import { View, Text } from "react-native";
+import CartList from "../Cart/CartList";
+import { getCart, updateQuantity } from "@/scripts/LocalCart";
+import React from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function CartScreen() {
-    const mockCartItems = [
-        {
-            id: 1,
-            name: "Tai nghe Bluetooth Sony WH-1000XM5 Chống ồn",
-            image:
-                "https://cdn.tgdd.vn/Products/Images/54/285798/sony-wh-1000xm5-den-thumb-600x600.jpg",
-            price: 8490000,
-            quantity: 1,
-        },
-        {
-            id: 2,
-            name: "Chuột Logitech MX Master 3S Không dây",
-            image:
-                "https://cdn.tgdd.vn/Products/Images/86/293529/logitech-mx-master-3s-thumb-1-600x600.jpg",
-            price: 2690000,
-            quantity: 2,
-        },
-        {
-            id: 3,
-            name: "Bàn phím cơ Keychron K6 Pro RGB Gateron Brown",
-            image:
-                "https://cdn.tgdd.vn/Products/Images/86/309003/keychron-k6-pro-thumb-600x600.jpg",
-            price: 2890000,
-            quantity: 1,
-        },
-        {
-            id: 4,
-            name: "Màn hình LG UltraGear 27GN750-B 240Hz 27 inch",
-            image:
-                "https://cdn.tgdd.vn/Products/Images/5698/238529/lg-ultragear-27gn750b-thumb-600x600.jpg",
-            price: 6990000,
-            quantity: 1,
-        },
-        {
-            id: 5,
-            name: "Ổ cứng di động SSD Samsung T7 1TB USB 3.2",
-            image:
-                "https://cdn.tgdd.vn/Products/Images/7077/228646/samsung-ssd-t7-thumb-600x600.jpg",
-            price: 3190000,
-            quantity: 3,
-        },
-    ] as CartItemType[];
     const router = useRouter();
-    const [cartItems, setCartItems] = useState(mockCartItems);
 
-    const handleUpdateQuantity = (id: number, qty: number) => {
+    const [cartItems, setCartItems] = useState<CartItemType[]>([]);
+
+    const fetchCartItems = async () => {
+        try {
+            const localCart = await getCart();
+            console.log("Giỏ hàng từ AsyncStorage:", localCart);
+            if (localCart && localCart.length > 0) {
+                setCartItems(localCart);
+            }
+        } catch (e) {
+            console.error("Lỗi lấy giỏ hàng:", e);
+        }
+    };
+
+    useFocusEffect(
+        React.useCallback(() => {
+            fetchCartItems();
+        }, [])
+    );
+
+    const handleUpdateQuantity = (product_id: number, variant_id: number, quantity: number) => {
         setCartItems((prev) =>
-            prev.map((item) =>
-                item.id === id ? { ...item, quantity: qty } : item
-            )
+            prev.map((item) => ((item.product_id === product_id && item.variant_id === variant_id) ? { ...item, quantity: quantity } : item))
         );
+        // update lại asynnc storage 
+        updateQuantity(product_id, variant_id, quantity);
     };
 
     const handleRemove = (id: number) => {
-        setCartItems((prev) => prev.filter((item) => item.id !== id));
+        setCartItems((prev) => prev.filter((item) => item.product_id !== id));
+        // Xoá khỏi async storage
+        updateQuantity(id, 0, 0); 
     };
 
-    const handleCheckout = (selected: typeof mockCartItems) => {
-        router.push({ pathname: '../Checkout' });
+    const handleCheckout = async (selected: CartItemType[]) => {
+        if (selected.length === 0) {
+            alert("Vui lòng chọn ít nhất một sản phẩm để thanh toán!");
+            return;
+        }
+
+        try {
+            // Lưu danh sách sản phẩm được chọn vào AsyncStorage (tùy chọn, nếu trang Checkout cần truy cập)
+            await AsyncStorage.setItem("selectedCartItems", JSON.stringify(selected));
+
+            // Đồng bộ giỏ hàng với server (giả định có API)
+            // await api.post('/cart/checkout', { items: selected });
+
+            // Điều hướng sang trang Checkout và truyền danh sách sản phẩm được chọn
+            router.push({
+                pathname: "../Checkout",
+                params: {
+                    selectedItems: JSON.stringify(selected), // Truyền dữ liệu qua params
+                },
+            });
+        } catch (error) {
+            console.error("Lỗi khi xử lý thanh toán:", error);
+            alert("Đã có lỗi xảy ra. Vui lòng thử lại!");
+        }
     };
 
     return (
         <View className="flex-1">
+            <Text
+                onPress={async () => {
+
+                }}
+            >
+                {/* Xem giỏ hàng */}
+            </Text>
             <CartList
                 data={cartItems}
                 onUpdateQuantity={handleUpdateQuantity}
                 onRemove={handleRemove}
                 onCheckout={handleCheckout}
             />
-        </View>
+        </View >
     );
 }

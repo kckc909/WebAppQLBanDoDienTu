@@ -75,6 +75,9 @@ export default function TabLayout() {
 					),
 					tabBarLabel: () => null,
 					headerLeft: () => headerLeft_BackArrow,
+					headerRight: () => (<>
+						
+					</>)
 				}}
 			/>
 

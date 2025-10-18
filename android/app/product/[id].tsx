@@ -1,14 +1,17 @@
-import { View, Text, ScrollView, Image, TouchableOpacity, ActivityIndicator } from "react-native";
+import { View, Text, ScrollView, Image, TouchableOpacity, ActivityIndicator, ToastAndroid } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { use, useEffect, useState } from "react";
 import { api_getProductDetail } from "@/api/api_Products";
-import { DEFAULT_PRODUCT_IMAGE } from "@/constants/default";
+import { CART_KEY, DEFAULT_PRODUCT_IMAGE } from "@/constants/default";
 import ProductRating from "@/components/ui/ProductRating";
 import ImagesGallery from "@/components/ui/ImagesGallery";
 import { ATTRIBUTE_DISPLAY_NAMES } from "@/constants/AttriName";
 import ProductAttributes from "./ProductAtrributes";
 import ProductReviewSection from "./ProductReview";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { api_add_cart as api_create_cart, api_add_cart_items } from "@/api/api_Cart";
+import { addToCart } from "@/scripts/LocalCart";
 
 export default function ProductDetails() {
     const { id } = useLocalSearchParams<{ id: string }>();
@@ -44,6 +47,60 @@ export default function ProductDetails() {
             setImgs(images.map((img) => img.url || DEFAULT_PRODUCT_IMAGE));
         }
     }, [images]);
+
+    // Hàm xử lý khi thêm vào giỏ
+    const handleAddtoCart = async () => {
+        try {
+            if (!productData) return;
+
+            const user_id = await AsyncStorage.getItem("user_id");
+            const cartItem = {
+                product_id: productData.id,
+                variant_id: currentVariant?.id,
+                quantity: 1,
+                price_snapshot: currentVariant?.price || 0,
+                name: productData.name,
+                thumbnail_url: productData.images?.[0]?.url || DEFAULT_PRODUCT_IMAGE,
+            };
+
+            // ✅ Thêm vào local trước
+            await addToCart(cartItem);
+
+            // ✅ Nếu đã đăng nhập thì thêm lên server
+            if (user_id) {
+                let cart_id = await AsyncStorage.getItem("cart_id");
+
+                // nếu chưa có cart_id -> tạo mới trên server
+                if (!cart_id) {
+                    const newCart = await api_create_cart(user_id);
+                    cart_id = newCart.cart_id;
+                    await AsyncStorage.setItem("cart_id", cart_id as string);
+                }
+
+                // Gửi sản phẩm lên server
+                const cartItemData = {
+                    cart_id,
+                    product_id: cartItem.product_id,
+                    variant_id: cartItem.variant_id,
+                    quantity: cartItem.quantity,
+                    price_snapshot: cartItem.price_snapshot,
+                };
+
+                await api_add_cart_items(cartItemData);
+            }
+
+            ToastAndroid.show("Đã thêm vào giỏ hàng!", ToastAndroid.SHORT);
+
+        } catch (error) {
+            console.error("❌ Lỗi khi thêm vào giỏ hàng:", error);
+        }
+    }
+
+    //  xử lý thanh toán
+    const handleCheckout = async () => {
+        const localcart = await AsyncStorage.getItem(CART_KEY)
+        console.log(localcart)
+    }
 
     // 🌀 Hiển thị màn hình loading
     if (loading) {
@@ -118,22 +175,20 @@ export default function ProductDetails() {
                     <ProductAttributes attributes={attributes} />
                 )}
 
-                {/* Thông tin khác */}
+                {/* Đánh giá */}
                 <View className="px-1 py-2 mt-2 bg-white rounded-2xl">
                     {productData?.id ? <ProductReviewSection productId={productData?.id} /> : null}
                 </View>
 
+                {/* Thông tin khác */}
             </ScrollView>
 
             {/* Thanh hành động */}
             <View className="flex-row items-center justify-between px-4 py-3 bg-white border-t">
                 {/* Thêm vào giỏ */}
                 <TouchableOpacity className="flex-row items-center px-6 py-3 bg-blue-500 rounded-full"
-                    onPress={() => {
-                        if (!productData) return;
-
-                        // Thêm sản phẩm vào giỏ hàng
-
+                    onPress={async () => {
+                        handleAddtoCart();
                     }}
                 >
                     <Ionicons name="cart-outline" size={20} color="white" />
@@ -145,9 +200,7 @@ export default function ProductDetails() {
                     <TouchableOpacity className="flex-row items-center px-6 py-3 mt-3 bg-red-500 rounded-full"
                         onPress={() => {
                             if (!productData) return;
-
-                            // Thanh toán
-
+                            handleCheckout();
                         }}
                     >
                         <Ionicons name="cart-outline" size={20} color="white" />

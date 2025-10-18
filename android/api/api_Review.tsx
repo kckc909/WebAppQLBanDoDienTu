@@ -8,7 +8,7 @@ export async function get_review_by_product(product_id: number) {
         return data;
     }
     catch (err) {
-        console.log("Lỗi : " + err)
+        // console.log("Lỗi : " + err)
     }
 }
 

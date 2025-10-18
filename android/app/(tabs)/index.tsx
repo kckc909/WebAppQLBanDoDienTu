@@ -9,8 +9,11 @@ import Category from "@/components/ui/Category";
 import { api_getCategories } from "@/api/api_Categories";
 import { api_get_product_list } from "@/api/api_Products";
 import LazyProductList from "@/components/ui/LazyProductList";
-import { Searchbar } from "react-native-paper";
 import SearchBar from "../Search/SearchBar";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { DEFAULT_PRODUCT_IMAGE } from "@/constants/default";
+
+
 export default function HomeScreen() {
 	const router = useRouter();
 
@@ -41,6 +44,18 @@ export default function HomeScreen() {
 		api_getCategories().then((data) => {
 			setCategories(data);
 		});
+
+		const getUser = async () => {
+			try {
+				const user = await AsyncStorage.getItem('user');
+				if (user) {
+					setUser(JSON.parse(user));
+				}
+			} catch (error) {
+				console.error('Error retrieving user:', error);
+			}
+		}
+		getUser();
 	}, []);
 
 	// đếm ngược
@@ -69,7 +84,7 @@ export default function HomeScreen() {
 					{user ? (
 						<View className="flex-row items-center">
 							<Image
-								source={{ uri: user.avatar_url || "https://via.placeholder.com/40" }}
+								source={{ uri: user.avatar_url || DEFAULT_PRODUCT_IMAGE }}
 								className="w-10 h-10 rounded-full"
 							/>
 							<View className="ml-3">
@@ -80,7 +95,11 @@ export default function HomeScreen() {
 					) : (
 						<TouchableOpacity
 							className="flex flex-row items-center px-4 py-2 bg-white rounded-full"
-							onPress={() => router.push("/auth/login")}
+							onPress={() => {
+								const link = "../Auth/Register";
+								console.log(link)
+								router.push(link);
+							}}
 						>
 							<MaterialIcons name="lock" size={20} color="gray" />
 							<Text className="font-semibold text-gray-800">Login</Text>
@@ -91,11 +110,7 @@ export default function HomeScreen() {
 					</TouchableOpacity>
 				</View>
 			</View>
-			<View className="p-2" ><Text onPress={
-				() => {
-					router.push('../Search')
-				}
-			}>adsnasjdnasd</Text></View>
+
 			<View className="p-2">
 				<SearchBar />
 			</View>

@@ -26,11 +26,6 @@ export default function RootLayout() {
 							headerShown: false
 						}} />
 					<Stack.Screen
-						name="auth"
-						options={{
-							headerShown: false
-						}} />
-					<Stack.Screen
 						name="product"
 						options={{
 							headerShown: false
@@ -50,6 +45,11 @@ export default function RootLayout() {
 						options={{
 							headerShown: false
 						}} />
+					<Stack.Screen
+						name="Auth"
+						options={{
+							headerShown: false
+						}}></Stack.Screen>
 				</Stack>
 			</ThemeProvider>
 		</PaperProvider>

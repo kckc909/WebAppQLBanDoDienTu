@@ -29,7 +29,7 @@ const ProductList: React.FC<Props> = ({
 			numColumns={horizontal ? 1 : numColumns}
 			renderItem={({ item }) => (
 				<ProductCard product={item} onPress={onProductPress || (() => {
-					router.push(`/product_detail`);
+					router.push(`./product/${item.product_id}`);
 				})} />
 			)}
 			contentContainerStyle={contentContainerStyle}

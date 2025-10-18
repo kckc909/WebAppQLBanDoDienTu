@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { View, FlatList, TouchableOpacity, Image } from "react-native";
+import React, { useState } from "react";
+import { View } from "react-native";
 import FilterBar from "./FilterBar";
 
 
@@ -17,12 +17,7 @@ const SearchScreen = () => {
                     { value: "apple", label: "Apple" },
                     { value: "samsung", label: "Samsung" },
                     { value: "xiaomi", label: "Xiaomi" },
-                    { value: "xiaomi", label: "Xiaomi" },
-                    { value: "xiaomi", label: "Xiaomi" },
-                    { value: "xiaomi", label: "Xiaomi" },
-                    { value: "xiaomi", label: "Xiaomi" },
-                    { value: "xiaomi", label: "Xiaomi" },
-                    { value: "xiaomi", label: "Xiaomi" },
+
                 ]}
                 selectedValue={query}
                 onSelect={(val) => setQuery(val)}
