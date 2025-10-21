@@ -22,7 +22,6 @@ export default function SearchBar() {
         setLoading(true);
         const data = await api_product_search(keyword);
         
-        console.log(query + data)
         setResults(data);
         setLoading(false);
     };

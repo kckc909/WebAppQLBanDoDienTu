@@ -5,7 +5,10 @@ const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const path = require('path');
+
 dotenv.config();
+
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -23,6 +26,7 @@ const orderItemsRoute = require('./routes/order_items.routes');
 const categoriesRoute = require('./routes/categories.routes');
 const cartsRoute = require('./routes/carts.routes');
 const cartItemsRoute = require('./routes/cart_items.routes');
+const checkout = require('./routes/checkout.routes');
 // --- ROUTES IMPORTS END ---
 
 // --- ROUTES USE START ---
@@ -38,12 +42,13 @@ app.use('/api/order_items', orderItemsRoute);
 app.use('/api/categories', categoriesRoute);
 app.use('/api/carts', cartsRoute);
 app.use('/api/cart_items', cartItemsRoute);
+app.use('/api/checkout', checkout)
 // --- ROUTES USE END ---
 
 // Xử lý ảnh
-app.use("/uploads", express.static("uploads"));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-
+// run server
 app.listen(port, () => console.log(`Server listening on port http://localhost:${port}/api/`));
 
 module.exports = app;

@@ -1,23 +1,96 @@
 ﻿const pool = require('../common/db');
+const db = pool;
+const mt = require('../utils/imageHandle');
 
-async function getAll() {
-	const [rows] = await pool.query(`
-		SELECT 
-		* 
-		FROM products 
-		
-		`);
-	return rows;
+async function findAll({ search, category_id, is_active, page = 1, limit = 10 }) {
+	let query = `
+		SELECT p.*, c.name as category_name, c.slug as category_slug
+		FROM products p
+		LEFT JOIN categories c ON p.category_id = c.category_id
+		WHERE 1=1
+    `;
+	const params = [];
+
+	if (search) {
+		query += ` AND (p.name LIKE ? OR p.brand LIKE ?)`;
+		params.push(`%${search}%`, `%${search}%`);
+	}
+
+	if (category_id) {
+		query += ` AND p.category_id = ?`;
+		params.push(category_id);
+	}
+
+	if (is_active !== undefined) {
+		query += ` AND p.is_active = ?`;
+		params.push(is_active);
+	}
+
+	query += ` ORDER BY p.created_at DESC LIMIT ? OFFSET ?`;
+	params.push(parseInt(limit), (page - 1) * limit);
+
+	const [rows] = await db.query(query, params);
+
+	// Parse JSON attributes
+	return rows.map(row => ({
+		...row,
+		product_attributes: this.parseJSON(row.product_attributes)
+	}));
 }
 
-async function getById(product_id) {
-	const [rows] = await pool.query('SELECT * FROM `products` WHERE `product_id` = ?', [product_id]);
-	return rows[0];
+async function findById(product_id) {
+	const [products] = await db.query(
+		`SELECT p.*, c.name as category_name, c.slug as category_slug
+		FROM products p
+		LEFT JOIN categories c ON p.category_id = c.category_id
+		WHERE p.product_id = ?`,
+		[product_id]
+	);
+
+	if (products.length === 0) return null;
+
+	const product = products[0];
+	product.product_attributes = this.parseJSON(product.product_attributes);
+
+	// Get variants
+	const [variants] = await db.query(
+		`SELECT * FROM product_variants WHERE product_id = ?`,
+		[product_id]
+	);
+
+	// Get images for each variant
+	for (let variant of variants) {
+		variant.variant_attributes = this.parseJSON(variant.variant_attributes);
+
+		const [images] = await db.query(
+			`SELECT * FROM variant_images WHERE variant_id = ? ORDER BY sort_order`,
+			[variant.variant_id]
+		);
+		variant.images = images;
+	}
+
+	product.variants = variants;
+	return product;
 }
 
 async function create(data) {
-	const [res] = await pool.query('INSERT INTO `products` SET ?', [data]);
-	return res.insertId;
+	const [result] = await db.query(
+		`INSERT INTO products 
+		(name, slug, short_description, description, brand, category_id, thumbnail_url, product_attributes, is_active, created_at, updated_at)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())`,
+		[
+			data.name,
+			data.slug,
+			data.short_description,
+			data.description,
+			data.brand,
+			data.category_id,
+			data.thumbnail_url,
+			JSON.stringify(data.product_attributes || {}),
+			data.is_active ? 1 : 0
+		]
+	);
+	return result.insertId;
 }
 
 async function update(product_id, data) {
@@ -25,9 +98,31 @@ async function update(product_id, data) {
 	return res.affectedRows;
 }
 
+async function softDelete(product_id) {
+	await db.query(
+		`UPDATE products 
+		SET is_active = 0
+		WHERE product_id = ${product_id}`);
+}
+
 async function remove(product_id) {
-	const [res] = await pool.query('DELETE FROM `products` WHERE `product_id` = ?', [product_id]);
-	return res.affectedRows;
+	// Xóa ảnh trong uploads
+
+	await mt.deleteProductImages(product_id);
+
+	// Xóa đường dẫn ảnh 
+	await db.query(
+		`DELETE vi FROM variant_images vi
+		INNER JOIN product_variants pv ON vi.variant_id = pv.variant_id
+		WHERE pv.product_id = ?`,
+		[product_id]
+	);
+
+	// Xóa variants
+	await db.query(`DELETE FROM product_variants WHERE product_id = ?`, [product_id]);
+
+	// Xóa product
+	await db.query(`DELETE FROM products WHERE product_id = ?`, [product_id]);
 }
 
 async function get_product_search(limit = 20, offset = 0, keyword = "") {
@@ -197,10 +292,7 @@ async function get_product_detail(product_id) {
 async function get_product_list(limit = 10, offset = 0) {
 	const [rows] = await pool.query(`
 		SELECT 
-			p.product_id,
-			p.name,
-			p.brand,
-			p.thumbnail_url,
+			p.*,
 			v.variant_id,
 			v.sku,
 			v.price
@@ -220,8 +312,15 @@ async function get_product_list(limit = 10, offset = 0) {
 	return rows;
 }
 
+function parseJSON(jsonString) {
+	if (!jsonString) return {};
+	try {
+		return JSON.parse(jsonString);
+	} catch (e) {
+		return {};
+	}
+}
 
 module.exports = {
-	getAll, getById, create, update, remove, get_product_detail, get_product_search, get_product_list
-
+	findAll, findById, create, update, remove, get_product_detail, get_product_search, get_product_list, softDelete, parseJSON
 };

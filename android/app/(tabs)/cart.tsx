@@ -15,7 +15,7 @@ export default function CartScreen() {
     const fetchCartItems = async () => {
         try {
             const localCart = await getCart();
-            console.log("Giỏ hàng từ AsyncStorage:", localCart);
+
             if (localCart && localCart.length > 0) {
                 setCartItems(localCart);
             }
@@ -51,13 +51,11 @@ export default function CartScreen() {
         }
 
         try {
-            // Lưu danh sách sản phẩm được chọn vào AsyncStorage (tùy chọn, nếu trang Checkout cần truy cập)
             await AsyncStorage.setItem("selectedCartItems", JSON.stringify(selected));
 
             // Đồng bộ giỏ hàng với server (giả định có API)
-            // await api.post('/cart/checkout', { items: selected });
+            
 
-            // Điều hướng sang trang Checkout và truyền danh sách sản phẩm được chọn
             router.push({
                 pathname: "../Checkout",
                 params: {

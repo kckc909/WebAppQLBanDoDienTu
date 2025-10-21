@@ -1,12 +1,11 @@
 import { View, Text, ScrollView, Image, TouchableOpacity, ActivityIndicator, ToastAndroid } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { router, useLocalSearchParams, useRouter } from "expo-router";
 import { use, useEffect, useState } from "react";
 import { api_getProductDetail } from "@/api/api_Products";
 import { CART_KEY, DEFAULT_PRODUCT_IMAGE } from "@/constants/default";
-import ProductRating from "@/components/ui/ProductRating";
-import ImagesGallery from "@/components/ui/ImagesGallery";
-import { ATTRIBUTE_DISPLAY_NAMES } from "@/constants/AttriName";
+import ProductRating from "@/components/Product/ProductRating";
+import ImagesGallery from "@/components/Product/ImagesGallery";
 import ProductAttributes from "./ProductAtrributes";
 import ProductReviewSection from "./ProductReview";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -99,7 +98,10 @@ export default function ProductDetails() {
     //  xử lý thanh toán
     const handleCheckout = async () => {
         const localcart = await AsyncStorage.getItem(CART_KEY)
-        console.log(localcart)
+        // console.log(localcart)
+        // chuyển sang trang checkout
+        const itemsParam = encodeURIComponent(JSON.stringify(id));
+        router.push(`../Checkout?items=${itemsParam}`);
     }
 
     // 🌀 Hiển thị màn hình loading

@@ -50,6 +50,12 @@ export default function RootLayout() {
 						options={{
 							headerShown: false
 						}}></Stack.Screen>
+					<Stack.Screen
+						name="Checkout"
+						options={{
+							title: 'Đặt hàng',
+							headerShown: true
+						}}></Stack.Screen>
 				</Stack>
 			</ThemeProvider>
 		</PaperProvider>

@@ -3,6 +3,8 @@ const router = express.Router();
 const ctrl = require('../controllers/carts.controllers');
 
 // GET /api/<table>
+router.get('/test', ctrl.test);
+
 router.get('/', ctrl.getAll);
 router.get('/:id', ctrl.getById);
 router.post('/', ctrl.create);

@@ -67,7 +67,7 @@ const CartList: React.FC<Props> = ({
                         onCheckout(data.filter((i) => selectedIds.includes(i.product_id)))
                     }
                 >
-                    Thanh toán ({selectedIds.length})
+                    Đặt hàng ({selectedIds.length})
                 </Button>
             </View>
         </View>

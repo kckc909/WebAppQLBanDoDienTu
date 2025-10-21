@@ -3,12 +3,12 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { categories, products, users } from "@/constants/custom.d";
 import { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
-import ProductList from "@/components/ui/ProductList";
+import ProductList from "@/components/Product/ProductList";
 import HorizontalSlider from "@/components/ui/HorizontalSlider";
 import Category from "@/components/ui/Category";
 import { api_getCategories } from "@/api/api_Categories";
 import { api_get_product_list } from "@/api/api_Products";
-import LazyProductList from "@/components/ui/LazyProductList";
+import LazyProductList from "@/components/Product/LazyProductList";
 import SearchBar from "../Search/SearchBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { DEFAULT_PRODUCT_IMAGE } from "@/constants/default";
@@ -29,8 +29,6 @@ export default function HomeScreen() {
 	const [timeLeft, setTimeLeft] = useState(8000);
 	const [user, setUser] = useState<users | null>();
 	const [list_categoies, setCategories] = useState<categories[]>([]);
-	const [query, setQuery] = useState('');
-
 
 	// effects
 	useEffect(() => {

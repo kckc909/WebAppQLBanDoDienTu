@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { api_getCategories } from "@/api/api_Categories";
 import Category from "@/components/ui/Category";
-import LazyProductList from "@/components/ui/LazyProductList";
+import LazyProductList from "@/components/Product/LazyProductList";
 
 type CategoryType = {
     category_id: number;
